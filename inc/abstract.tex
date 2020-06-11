@@ -1,0 +1,34 @@
+\ifnum\strcmp{\jobname}{abstract}=0
+	\input{../set/preclass}
+	\documentclass{article}
+	\input{../set/default}
+	\input{../set/user}
+	\input{../set/article}
+	\begin{document}
+\fi
+%-------------------------------------------------------------------------------------------------------
+\setcounter{page}{1}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+	本文利用统计学方法对“拍照赚钱”的任务定价问题进行分析，寻求能使任务完成率最高且定价最低的最优解决方案。
+	\\\indent 针对问题一，考虑了任务是否完成与任务的定价直接相关，而任务定价的高低是一个相对的概念，任务发布地点与城市中心越近，该地区消费水平越高，与相同价格的偏远地区的任务相比，相对价格较低。
+	\\\indent 问题二利用问题一的假设改进任务定价，考察任务完成率；
+	\\\indent 问题三为了进一步提高任务完成率，考虑将任务进行打包，将较偏远的任务和离市中心较近的任务打包发布；
+	\\\indent 针对问题四，利用问题二的定价方案和问题三的打包方案设置任务的定价。
+	\\\textbf{关键词：}核密度分析；聚类分析；拍照赚钱。
+\end{abstract}
+\clearpage
+%\begin{center}
+%	\normalsize\textbf{Summary}
+%\end{center}
+%\par\small
+%\begin{spacing}{0.5}
+%	\\\textbf{Keywords: }
+%\end{spacing}
+%\normalsize
+%\clearpage
+%-------------------------------------------------------------------------------------------------------
+\ifnum\strcmp{\jobname}{abstract}=0
+	\end{document}
+\fi

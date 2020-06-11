@@ -1,0 +1,40 @@
+\ifnum\strcmp{\jobname}{evaluate}=0
+	\input{../set/preclass}
+	\documentclass{article}
+	\input{../set/default}
+	\input{../set/user}
+	\input{../set/article}
+	\begin{document}
+\fi
+%-------------------------------------------------------------------------------------------------------
+\clearpage
+\section{模型的评价与改进}
+\subsection{优点}
+\begin{enumerate}
+	\item 在数据处理方面，针对所给数据进行详细分析，得到任务执行的具体情况，在进一步进行划分后，得到的数据具有比较明显的地域特征，为制定定价方案提供了数据资料；
+	\item 从会员的角度进行分析，新的定价方案考虑了更多的因素，模型有很大的使用价值；
+	\item 层次分析，利用较少的数据便可对目标有一个相对准确的求解；
+	\item 对定价方案进行了细分，使得解决问题时更加具有针对性。	
+\end{enumerate}
+\subsection{缺点}
+\begin{enumerate}
+	\item 定量数据较少，定性成分多，不易令人信服；
+	\item 指标过多，数据统计量大，且权重难以确定；
+	\item 特征值和特征向量的精确求法比较复杂；
+	\item 任务未完成的原因是多方面的，很多因素未考虑；
+	\item 模型忽略因素较多，和真实数据相比很容易产生偏差。
+\end{enumerate}
+\subsection{改进}
+\begin{enumerate}
+	\item 增加模型的定量分析，并获得更多数据进行验证，以期得到更准确的结果。
+\end{enumerate}
+\subsection{推广}
+\begin{enumerate}
+	\item 模型在某些方面具有一定的可行性，适用于许多领域；
+	\item 模型中对大量的数据进行了处理，发现了影响任务定价的诸多因素，并利用层次分析法得到了各个因素的权重；
+	\item 模型不仅适配于互联网众包平台，对其他定价、规划问题也有一定的指导作用。
+\end{enumerate}
+%-------------------------------------------------------------------------------------------------------
+\ifnum\strcmp{\jobname}{evaluate}=0
+	\end{document}
+\fi

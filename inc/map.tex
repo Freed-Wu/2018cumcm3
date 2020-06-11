@@ -1,0 +1,94 @@
+\ifnum\strcmp{\jobname}{map}=0
+	\input{../set/preclass}
+	\documentclass{article}
+	\input{../set/default}
+	\input{../set/user}
+	\input{../set/article}
+	\begin{document}
+\fi
+%-------------------------------------------------------------------------------------------------------
+\clearpage
+\section{定价模型}
+\subsection{模型的假设与标记}
+\subsubsection{假设}
+\begin{enumerate}
+	\item 假设分配成功的任务都能完成，不考虑任务失败情况；
+	\item 假设信誉值越高，任务完成情况越好，因此方案评价时应考虑信誉值；
+	\item 假设会员接受任务的标价总额不能超过预定任务限额；
+	\item 假设任务地理位置与会员地理位置距离影响定价且成正比。
+\end{enumerate}
+\subsection{模型的建立与求解}
+\subsubsection{建立}
+先对原始数据预处理得到基数据。
+\begin{matlab}{map.m}
+clear;
+clc;
+
+longi=xlsread('附件一：已结束项目任务数据.xls','t_tasklaunch','B2:B836');
+lati=xlsread('附件一：已结束项目任务数据.xls','t_tasklaunch','C2:C836');
+price=xlsread('附件一：已结束项目任务数据.xls','t_tasklaunch','D2:D836');
+task=int8(xlsread('附件一：已结束项目任务数据.xls','t_tasklaunch','E2:E836'));
+point0=[lati(task==0),longi(task==0),price(task==0)];
+point1=[lati(task==1),longi(task==1),price(task==1)];
+xlswrite('data.xls',point0,1);
+xlswrite('data.xls',point1,2);
+
+[num,lola]=xlsread('附件二：会员信息数据.xlsx','Sheet1','B2:B1878');
+lo=zeros(length(lola),1);
+la=zeros(length(lola),1);
+for k=1:length(lola)
+	temp=strsplit(lola{k});
+	lo(k)=str2double(temp{1});
+	la(k)=str2double(temp{2});
+end
+xlswrite('data.xls',[la,lo],3);
+
+longix=xlsread('附件三：新项目任务数据.xls','t_tasklaunch','B2:B2067');
+latix=xlsread('附件三：新项目任务数据.xls','t_tasklaunch','C2:C2067');
+xlswrite('data.xls',[latix,longix],4);
+
+scatter(point0(:,1),point0(:,2),'+r');
+hold on;
+scatter(point1(:,1),point1(:,2),'+g');
+xlabel('纬度');
+ylabel('经度');
+title('完成任务情况');
+legend('不能完成任务','能完成任务');
+\end{matlab}
+\par\indent 对基数据进行可视化后结果如下。
+\begin{figure}[htbp]
+	\centering
+	\caption{任务}
+	\includegraphics[height=8cm]{map.ai}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\caption{任务地址}
+	\includegraphics[height=8cm]{task.ai}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\caption{会员地址}
+	\includegraphics[height=8cm]{member.ai}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\caption{未完成任务核密度图}
+	\includegraphics[height=8cm]{task0.ai}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\caption{已完成任务核密度图}
+	\includegraphics[height=8cm]{task1.ai}
+\end{figure}
+\newpage 从密度图中可以清楚地看出任务具有集群现象，对未完成任务聚类分析后可得几个聚类中心的位置如下。
+\subsubsection{求解}
+\begin{description}
+	\item[深圳市]深圳市虽定价相对较高，会员相对集中，但是人均消费水平高、人群生活节奏快、台风暴雨等恶劣天气普遍，不仅影响店铺的营业，甚至引起交通堵塞影响人们的出行，因此深圳市任务未完成的多。 
+	\item[白云区]广州市的白云区定价相对较高，会员相对集中，但是聚集着大型商业广场，节假日人流量和车流量较大，道路塞车严重，道路安排不合理，路口不对接，途中耗费时间较长。
+	\item[佛山市]佛山市是著名的侨乡，气候宜人，自然环境的影响因素较小，但同广州市白云区相似在人口集中的商业区，任务完成率低。
+\end{description}
+%-------------------------------------------------------------------------------------------------------
+\ifnum\strcmp{\jobname}{map}=0
+	\end{document}
+\fi

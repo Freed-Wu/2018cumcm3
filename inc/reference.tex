@@ -1,0 +1,18 @@
+\ifnum\strcmp{\jobname}{reference}=0
+	\input{../set/preclass}
+	\documentclass{article}
+	\input{../set/default}
+	\input{../set/user}
+	\input{../set/article}
+	\begin{document}
+\fi
+%-------------------------------------------------------------------------------------------------------
+\clearpage
+\addcontentsline{toc}{section}{参考文献}
+\begin{thebibliography}{}
+	\bibitem{1}毛可.软件众包任务的定价模型与人员匹配方法研究及工具实现.硕士学位论文，中国科学院大学，2014：30-34.\par
+\end{thebibliography}
+%-------------------------------------------------------------------------------------------------------
+\ifnum\strcmp{\jobname}{reference}=0
+	\end{document}
+\fi
